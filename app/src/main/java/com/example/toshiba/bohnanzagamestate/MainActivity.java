@@ -30,10 +30,14 @@ public class MainActivity extends AppCompatActivity  {
 
             testTextEdit.setText("Actions:\n");
 
+            //creating first instanc of the state, deep copy for second instance
             BohnanzaState firstInstance = new BohnanzaState();
             BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
             BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
 
+
+            //adding description of each action to the text Edit
+            //calling each method in BohnanzaState
             testTextEdit.append("Give player1 10 coins to buy a 3rd bean field\n");
             firstInstancePL[0].setCoins(10);
             firstInstance.buyThirdField(0);
@@ -65,10 +69,19 @@ public class MainActivity extends AppCompatActivity  {
             testTextEdit.append("Player 1 ends their turn\n");
             firstInstance.draw3Cards(0);
 
-            testTextEdit.append("\nInstance 1:\n");
-            testTextEdit.append(firstInstance.toString());
+
+
+            //printing the second instance, deep copy of the first instance
             testTextEdit.append("\nInstance 2:");
             testTextEdit.append(secondInstance.toString());
+
+
+            BohnanzaState thirdInstance = new BohnanzaState();
+            BohnanzaState fourthInstance = new BohnanzaState(thirdInstance, 0);
+
+            //printing the fourth instance, a deep copy of the third instance
+            testTextEdit.append("\nInstance 4:");
+            testTextEdit.append(fourthInstance.toString());
 
         }
     }
