@@ -1,7 +1,9 @@
 package com.example.toshiba.bohnanzagamestate;
 
 /**
- * Created by Toshiba on 3/4/2018.
+ * Creates a new card which is identified by a string
+ *
+ * @autor Adam Mercer, Reeca Bardon, Alyssa Arnaud, Sarah Golder
  */
 
 public class Card {

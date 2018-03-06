@@ -2,7 +2,9 @@ package com.example.toshiba.bohnanzagamestate;
 
 
 /**
- * Created by Toshiba on 2/26/2018.
+ * Holds information for the current game state for Bohnanza
+ *
+ * @autor Adam Mercer, Reeca Bardon, Alyssa Arnaud, Sarah Golder
  */
 
 public class BohnanzaState {
@@ -40,6 +42,10 @@ public class BohnanzaState {
         }
     }
 
+    /**
+     * Deep copy constructor of BohnanzaState
+     *
+     */
     public BohnanzaState(BohnanzaState orig, int playerId) {
         turn = orig.turn;
         phase = orig.phase;
@@ -64,9 +70,13 @@ public class BohnanzaState {
         }
     }
 
+    //getter
     public BohnanzaPlayerState[] getPlayerList() { return playerList; }
 
-    //Buy new field
+    /**
+     * Buy new Bean field action
+     *
+     */
     public boolean buyThirdField(int playerId){
         if( playerList[playerId].getHasThirdField() ){
             return false;
@@ -83,7 +93,10 @@ public class BohnanzaState {
         }
     }
 
-    //plant bean from top card of origin
+    /**
+     * plant a bean in a bean field
+     *
+     */
     public boolean plantBean(int playerId, int fieldId,
                              Deck origin) {
         //Check if player's turn
@@ -106,7 +119,10 @@ public class BohnanzaState {
         return false;
     }
 
-    //harvest field
+    /**
+     * Harvest beans in a bean field
+     *
+     */
     public boolean harvestField(int playerId, Deck field){
         if( field.size() == 0 ) {
             return false;
@@ -115,7 +131,10 @@ public class BohnanzaState {
         return true;
     }
 
-    //turntwotradecards
+    /**
+     * turn over two cards that are up for trading
+     *
+     */
     public boolean turn2Cards(int playerId){
         if( turn != playerId ){
             return false;
@@ -130,7 +149,10 @@ public class BohnanzaState {
         return true;
     }
 
-    //startTrading
+    /**
+     * start trading phase
+     *
+     */
     public boolean startTrading(int playerId) {
         if( turn != playerId || phase != 1 ){
             return false;
@@ -139,6 +161,10 @@ public class BohnanzaState {
         return true;
     }
 
+    /**
+     * Allow player to make an offer
+     *
+     */
     public boolean makeOffer(int traderId, Card[] offer) {
         if(phase != 2) {
             return false;
@@ -148,7 +174,10 @@ public class BohnanzaState {
         return true;
     }
 
-    //abstainFromTrading
+    /**
+     * Allow player to state that they will choose to not participate in trading
+     *
+     */
     public boolean abstainFromTrading(int playerId) {
         if(phase != 2) {
             return false;
@@ -157,22 +186,10 @@ public class BohnanzaState {
         return true;
     }
 
-    //acceptoffer
-    public boolean acceptOffer(int playerId, int traderId) {
-        if( turn != playerId || phase != 2 ||
-                playerList[traderId].getMakeOffer() != 2){
-            return false;
-        }
-        Deck traderHand = playerList[traderId].getHand();
-        Deck playerHand = playerList[playerId].getHand();
-        while( !(traderHand.getCards().get(0).getBeanName().
-                equalsIgnoreCase("CardBack"))){
-            traderHand.moveTopCardTo(playerHand);
-        }
-        return true;
-    }
-
-    //draw3cards
+    /**
+     * End turn by drawing 3 cards from main deck.
+     *
+     */
     public boolean draw3Cards (int playerId) {
         if(turn != playerId) {
             return false;
@@ -307,10 +324,12 @@ public class BohnanzaState {
         player4Info = player4Info + "Hand: "+playerList[3].getHand().toString()+"\n";
 
 
+        //info about decks
         String deckInfo = "\nTrade deck: "+tradeDeck.toString()+"\n" +
                 "Main deck: "+ mainDeck.size() +" cards remaining\n" +
                 "Discard deck: "+ discardDeck.size()+" cards\n";
 
+        //info about state of game
         String stateInfo = "\nPhase: "+phase+"\n"+
                 "Player"+(turn+1)+"'s turn\n";
 

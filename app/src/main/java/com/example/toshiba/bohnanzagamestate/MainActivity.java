@@ -7,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * Main activity of the project. Updates GUI when button is pressed
+ *
+ * @autor Adam Mercer, Reeca Bardon, Alyssa Arnaud, Sarah Golder
+ */
 
 public class MainActivity extends AppCompatActivity  {
     EditText testTextEdit;
@@ -21,7 +26,10 @@ public class MainActivity extends AppCompatActivity  {
         runTestButton.setOnClickListener(new buttonListener());
     }
 
-
+    /**
+     * create an action when the user presses a button
+     *
+     */
     private class buttonListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -30,7 +38,7 @@ public class MainActivity extends AppCompatActivity  {
 
             testTextEdit.setText("Actions:\n");
 
-            //creating first instanc of the state, deep copy for second instance
+            //creating first instance of the state, deep copy for second instance
             BohnanzaState firstInstance = new BohnanzaState();
             BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
             BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
@@ -63,12 +71,8 @@ public class MainActivity extends AppCompatActivity  {
             testTextEdit.append("Player 2 will choose not to trade\n");
             firstInstance.abstainFromTrading(1);
 
-            testTextEdit.append("Player 1 accepts Player 2's offer\n");
-            //firstInstance.acceptOffer(0, 2);
-
             testTextEdit.append("Player 1 ends their turn\n");
             firstInstance.draw3Cards(0);
-
 
 
             //printing the second instance, deep copy of the first instance

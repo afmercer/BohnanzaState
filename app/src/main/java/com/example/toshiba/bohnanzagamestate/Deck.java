@@ -4,7 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by Toshiba on 3/4/2018.
+ * Creates a Deck by making a new ArrayList of cards
+ *
+ * @autor Adam Mercer, Reeca Bardon, Alyssa Arnaud, Sarah Golder
+ */
+
+
+/**
+ External Citation
+ Date: 6 March 2018
+ Problem: Needed various methods for deck class
+ Resource:
+ https://github.com/srvegdahl/SlapJack
+ Solution: Used Professor Vengdahl's slapjack game framework to implement various
+ methods in the deck class.
  */
 
 public class Deck implements Serializable {
@@ -90,6 +103,10 @@ public class Deck implements Serializable {
         return cards.size();
     }
 
+    /**
+     *  add all bohnanza cards to a the deck that method was called from
+     *
+     */
     public void addAllCards() {
         for(int i = 0; i < 20; i++) {
             add(new Card("Blue Bean"));

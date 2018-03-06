@@ -1,7 +1,9 @@
 package com.example.toshiba.bohnanzagamestate;
 
 /**
- * Created by Toshiba on 3/4/2018.
+ * Player state for a given player in Bohnanza
+ *
+ * @autor Adam Mercer, Reeca Bardon, Alyssa Arnaud, Sarah Golder
  */
 
 public class BohnanzaPlayerState {
@@ -19,11 +21,14 @@ public class BohnanzaPlayerState {
         hasThirdField = false;
         makeOffer = 0;
         for( int i = 0; i<3; i++ ){
-            //fields[i] = null;
             fields[i] = new Deck();
         }
     }
 
+    /**
+     * Deep copy constructor of BohnanzaPlayerState
+     *
+     */
     public BohnanzaPlayerState(BohnanzaPlayerState orig){
         name =  orig.name;
         coins = orig.coins;
@@ -37,27 +42,18 @@ public class BohnanzaPlayerState {
 
     //Getter methods
     public Deck getField(int field) { return fields[field]; }
-    public String getName() {return name;}
     public int getCoins() {return coins;}
     public Deck getHand() {return hand;}
     public boolean getHasThirdField() {return hasThirdField;}
     public int getMakeOffer() {return makeOffer;}
 
     //setter methods
-    public void setName (String newName) {name = newName;}
     public void setCoins (int newCoins) {coins = newCoins;}
     public void setHasThirdField (boolean newHasThirdField) {
         hasThirdField = newHasThirdField;
     }
     public void setHand (Deck newHand) {hand = newHand;}
-    public void setField (Deck newField, int field) {
-        /*
-        if(newField == null) {
-            return;
-        }
-        */
-        fields[field] = newField;
-    }
+
     //setMakeOffer 2 if user will make an offer, 1 if user will not
     // make an offer, 0 if they have not decided
     public void setMakeOffer(int newMakeOffer) {
